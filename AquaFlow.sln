@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaFlow.API", "AquaFlow.API\AquaFlow.API.csproj", "{79EBF0F1-438B-4F9E-B971-FFBEB98D3F9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaFlow.Domain", "AquaFlow.Domain\AquaFlow.Domain.csproj", "{7E2FCD04-9BD6-41E1-A360-A1C180D5E79D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AquaFlow.DataAccess", "AquaFlow.DataAccess\AquaFlow.DataAccess.csproj", "{DEE9CA4C-1475-482D-9E88-A3031FAFF86B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79EBF0F1-438B-4F9E-B971-FFBEB98D3F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79EBF0F1-438B-4F9E-B971-FFBEB98D3F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79EBF0F1-438B-4F9E-B971-FFBEB98D3F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79EBF0F1-438B-4F9E-B971-FFBEB98D3F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E2FCD04-9BD6-41E1-A360-A1C180D5E79D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2FCD04-9BD6-41E1-A360-A1C180D5E79D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2FCD04-9BD6-41E1-A360-A1C180D5E79D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E2FCD04-9BD6-41E1-A360-A1C180D5E79D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEE9CA4C-1475-482D-9E88-A3031FAFF86B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEE9CA4C-1475-482D-9E88-A3031FAFF86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEE9CA4C-1475-482D-9E88-A3031FAFF86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEE9CA4C-1475-482D-9E88-A3031FAFF86B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
