@@ -1,11 +1,7 @@
 ﻿using AquaFlow.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NetTopologySuite.Geometries;
 
 namespace AquaFlow.DataAccess.Data.Configurations
 {
@@ -17,13 +13,10 @@ namespace AquaFlow.DataAccess.Data.Configurations
                    .IsRequired()
                    .HasMaxLength(100);
 
-            builder.Property(f => f.Latitude)
-                   .IsRequired()
-                   .HasColumnType("decimal(12,4)");
-
-            builder.Property(f => f.Longitude)
-                   .IsRequired()
-                   .HasColumnType("decimal(12,4)");
+            builder.Property(f => f.Location)
+                    .IsRequired()
+                    .HasColumnType("geography")
+                    .HasPrecision(4);
 
             builder.Property(f => f.NumberOfCages)
                    .IsRequired();
@@ -33,6 +26,9 @@ namespace AquaFlow.DataAccess.Data.Configurations
 
             builder.Property(f => f.PictureUrl)
                    .HasMaxLength(255);
+
+            builder.HasAnnotation("SqlServer:Include", new[] { "Location" });
+
         }
     }
 }

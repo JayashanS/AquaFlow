@@ -1,12 +1,7 @@
 ﻿using AquaFlow.DataAccess.Data.Configurations;
 using AquaFlow.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NetTopologySuite;
 
 namespace AquaFlow.DataAccess.Data
 {
