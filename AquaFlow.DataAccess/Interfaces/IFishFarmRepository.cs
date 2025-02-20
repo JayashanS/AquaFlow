@@ -1,11 +1,15 @@
-﻿namespace AquaFlow.DataAccess.Interfaces
+﻿using AquaFlow.DataAccess.Filters;
+using AquaFlow.DataAccess.Models;
+
+namespace AquaFlow.DataAccess.Interfaces
 {
     public interface IFishFarmRepository
     {
-        Task CreateFishFarmAsync();
+        Task CreateFishFarmAsync(FishFarm fishFarm);
         Task DeleteFishFarmByIdAsync(int id);
-        Task GetFishFarmsAsync();
-        Task GetFishFarmByIdAsync(int id);
-        Task UpdateFishFarmByIdAsync(int id);
+        Task<IEnumerable<FishFarm>> GetFishFarmsAsync(FishFarmFilterOptions filterOptions);
+        Task<int> GetTotalFishFarmsCountAsync(FishFarmFilterOptions filterOptions);
+        Task<FishFarm> GetFishFarmByIdAsync(int id);
+        Task UpdateFishFarmByIdAsync(int id, FishFarm updatedFishFarm);
     }
 }

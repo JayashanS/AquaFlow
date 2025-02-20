@@ -21,8 +21,4 @@
     <PackageReference Include="NetTopologySuite" Version="2.5.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
