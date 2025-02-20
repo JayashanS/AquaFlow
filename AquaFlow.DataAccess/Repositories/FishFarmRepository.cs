@@ -1,6 +1,6 @@
 ﻿using AquaFlow.DataAccess.Data;
 using AquaFlow.DataAccess.Filters;
-using AquaFlow.DataAccess.Helpers;
+using AquaFlow.DataAccess.Utils;
 using AquaFlow.DataAccess.Interfaces;
 using AquaFlow.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,17 +10,18 @@ namespace AquaFlow.DataAccess.Repositories
 {
     public class FishFarmRepository(AppDbContext context, ILogger<FishFarmRepository> logger) : IFishFarmRepository
     {
-        public async Task CreateFishFarmAsync(FishFarm fishFarm)
+        public async Task<FishFarm> CreateFishFarmAsync(FishFarm fishFarm)
         {
             try
             {
-                context.FishFarms.Add(fishFarm);
+                var createdFishFarm = (await context.FishFarms.AddAsync(fishFarm)).Entity;
 
                 await context.SaveChangesAsync();
+                return createdFishFarm;
             }
             catch (Exception ex)
             {
-                logger.LogError("Error while processing the creation of fish farm: {FishFarmName}", fishFarm.Name);
+                logger.LogError(ex, "Error while processing the creation of fish farm: {FishFarmName}", fishFarm.Name);
                 throw;
             }
         }

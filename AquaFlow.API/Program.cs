@@ -1,3 +1,5 @@
+using AquaFlow.API.Extensions;
+using AquaFlow.API.Utils;
 using AquaFlow.DataAccess.Data;
 using AquaFlow.Domain.Mappers;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +15,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"), x => x.UseNetTopologySuite()));
-
+builder.Services.AddApplicationServices();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+builder.Services.AddSingleton<FileUploadHelper>();
+
 
 var app = builder.Build();
 
@@ -28,6 +32,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseStaticFiles();
 
 app.MapControllers();
 

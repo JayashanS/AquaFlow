@@ -1,4 +1,6 @@
-﻿namespace AquaFlow.Domain.DTOs.FishFarm
+﻿using Microsoft.AspNetCore.Http;
+
+namespace AquaFlow.Domain.DTOs.FishFarm
 {
     public class CreateFishFarmDTO
     {
@@ -7,6 +9,6 @@
         public double Longitude { get; set; }
         public int NumberOfCages { get; set; } 
         public bool HasBarge { get; set; }
-        public string PictureUrl { get; set; }
+        public IFormFile Picture { get; set; }
     }
 }

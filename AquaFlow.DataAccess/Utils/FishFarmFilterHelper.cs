@@ -1,7 +1,7 @@
 ﻿using AquaFlow.DataAccess.Models;
 using System.Text.RegularExpressions;
 
-namespace AquaFlow.DataAccess.Helpers
+namespace AquaFlow.DataAccess.Utils
 {
     public static class FishFarmFilterHelper
     {

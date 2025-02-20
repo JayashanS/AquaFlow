@@ -18,9 +18,4 @@
     <ProjectReference Include="..\AquaFlow.Domain\AquaFlow.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
 </Project>

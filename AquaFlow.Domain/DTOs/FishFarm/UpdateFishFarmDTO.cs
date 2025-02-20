@@ -1,6 +1,12 @@
-﻿namespace AquaFlow.Domain.DTOs.FishFarm
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AquaFlow.Domain.DTOs.FishFarm
 {
-    public class RetrieveFishFarmDTO
+    public class UpdateFishFarmDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
