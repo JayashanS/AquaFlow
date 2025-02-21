@@ -11,9 +11,10 @@ namespace AquaFlow.API.Extensions
         {
            
             services.AddScoped<IFishFarmRepository, FishFarmRepository>();
-
+            services.AddScoped<IWorkerRepository, WorkerRepository>();
             
             services.AddScoped<IFishFarmService, FishFarmService>();
+            services.AddScoped<IWorkerService, WorkerService>();    
 
             services.AddCors(options =>
             {

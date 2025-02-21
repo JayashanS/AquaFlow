@@ -2,7 +2,7 @@
 
 namespace AquaFlow.Domain.DTOs.Worker
 {
-    public class CreateWorkerDTO
+    public class UpdateWorkerDTO
     {
         public string Name { get; set; }
         public IFormFile Picture { get; set; }

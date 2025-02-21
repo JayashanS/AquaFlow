@@ -1,11 +1,10 @@
 ﻿using AquaFlow.DataAccess.Models;
-using System.Text.RegularExpressions;
 
 namespace AquaFlow.DataAccess.Utils
 {
     public static class FishFarmFilterHelper
     {
-        public static IQueryable<FishFarm> ApplyNameFilter(IQueryable<FishFarm> query, string name)
+        public static IQueryable<FishFarm> ApplyNameFilter(IQueryable<FishFarm> query, string? name)
         {
             if (!string.IsNullOrEmpty(name))
             {

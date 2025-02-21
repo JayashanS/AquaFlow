@@ -22,7 +22,8 @@ namespace AquaFlow.Domain.Mappers
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Location.X))
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Location.Y));
 
-            CreateMap<Worker, CreateWorkerDTO>();
+            CreateMap<CreateWorkerDTO, Worker>()
+                .ForMember(dest => dest.PictureUrl, opt => opt.Ignore());
             CreateMap<Worker, RetrieveWorkerDTO>();
 
             CreateMap<WorkerPosition, CreateWorkerPositionDTO>();

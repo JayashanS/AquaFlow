@@ -1,6 +1,7 @@
 using AquaFlow.API.Extensions;
 using AquaFlow.API.Utils;
 using AquaFlow.DataAccess.Data;
+using AquaFlow.DataAccess.Utils;
 using AquaFlow.Domain.Mappers;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddApplicationServices();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddSingleton<FileUploadHelper>();
+builder.Services.AddSingleton<WorkerFilterHelper>();
 
 
 var app = builder.Build();

@@ -24,7 +24,6 @@ namespace AquaFlow.Domain.Services
                 fishFarm.PictureUrl = pictureUrl;
 
                 var createdFishFarm = await fishFarmRepository.CreateFishFarmAsync(fishFarm);
-
                 return mapper.Map<RetrieveFishFarmDTO>(createdFishFarm);
             }
             catch (Exception ex)

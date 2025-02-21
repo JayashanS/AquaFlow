@@ -15,7 +15,6 @@ namespace AquaFlow.DataAccess.Repositories
             try
             {
                 var createdFishFarm = (await context.FishFarms.AddAsync(fishFarm)).Entity;
-
                 await context.SaveChangesAsync();
                 return createdFishFarm;
             }
@@ -31,14 +30,11 @@ namespace AquaFlow.DataAccess.Repositories
             try
             {
                 var fishFarm = await context.FishFarms.FirstOrDefaultAsync(f => f.Id == id);
-
                 if (fishFarm == null)
                 {
                     throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
                 }
-
                 context.FishFarms.Remove(fishFarm);
-
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -53,12 +49,10 @@ namespace AquaFlow.DataAccess.Repositories
             try
             {
                 var fishFarm = await context.FishFarms.FirstOrDefaultAsync(f => f.Id == id);
-
                 if (fishFarm == null)
                 {
                     throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
                 }
-
                 return fishFarm;
             }
             catch (Exception ex)
@@ -73,15 +67,15 @@ namespace AquaFlow.DataAccess.Repositories
             try
             {
                 if (filterOptions == null)
+                {
                     throw new ArgumentNullException(nameof(filterOptions), "Filter options cannot be null.");
-
+                }
                 var query = context.FishFarms.AsQueryable();
 
                 query = FishFarmFilterHelper.ApplyNameFilter(query, filterOptions.Name);
                 query = FishFarmFilterHelper.ApplyLocationFilter(query, filterOptions.TopRightLat, filterOptions.TopRightLng, filterOptions.BottomLeftLat, filterOptions.BottomLeftLng);
                 query = FishFarmFilterHelper.ApplyNumberOfCagesFilter(query, filterOptions.NumberOfCages);
                 query = FishFarmFilterHelper.ApplyHasBargeFilter(query, filterOptions.HasBarge);
-
                 query = FishFarmFilterHelper.ApplyPaging(query, filterOptions.PageNumber, filterOptions.PageSize);
 
                 return await query.ToListAsync();
@@ -110,7 +104,6 @@ namespace AquaFlow.DataAccess.Repositories
             try
             {
                 var fishFarm = await context.FishFarms.FirstOrDefaultAsync(f => f.Id == id);
-
                 if (fishFarm == null)
                 {
                     throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
