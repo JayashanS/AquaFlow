@@ -9,8 +9,7 @@ namespace AquaFlow.DataAccess.Utils
         {
             if (!string.IsNullOrEmpty(name))
             {
-                var regex = new Regex(name, RegexOptions.IgnoreCase);
-                query = query.Where(f => regex.IsMatch(f.Name));
+                query = query.Where(f => f.Name.Contains(name));
             }
             return query;
         }
