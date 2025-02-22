@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AquaFlow.Domain.Services
 {
-    public class FishFarmService(IFishFarmRepository fishFarmRepository, IMapper mapper, ILogger<FishFarmService> logger, FileUploadHelper fileUploadHelper) : IFishFarmService
+    public class FishFarmService(IFishFarmRepository fishFarmRepository, IMapper mapper, ILogger<FishFarmService> logger, FileUploadHelper fileUploadHelper, IWorkerRepository workerRepository) : IFishFarmService
     {
         public async Task<RetrieveFishFarmDTO> CreateFishFarmAsync(CreateFishFarmDTO fishFarmDTO)
         {
@@ -37,6 +37,37 @@ namespace AquaFlow.Domain.Services
         {
             try
             {
+                var fishFarm = await fishFarmRepository.GetFishFarmByIdAsync(id);
+
+                if (fishFarm == null)
+                {
+                    throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
+                }
+
+                if (!string.IsNullOrEmpty(fishFarm.PictureUrl))
+                {
+                    var picturePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", fishFarm.PictureUrl.TrimStart('/'));
+
+                    if (File.Exists(picturePath))
+                    {
+                        File.Delete(picturePath); 
+                    }
+                }
+
+                var usersInFishFarm = await workerRepository.GetWorkersByFishFarmIdAsync(id);
+                foreach (var user in usersInFishFarm)
+                {
+                    if (!string.IsNullOrEmpty(user.PictureUrl))
+                    {
+                        var userPicturePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", user.PictureUrl.TrimStart('/'));
+
+                        if (File.Exists(userPicturePath))
+                        {
+                            File.Delete(userPicturePath); 
+                        }
+                    }
+                }
+
                 await fishFarmRepository.DeleteFishFarmByIdAsync(id);
             }
             catch (Exception ex)

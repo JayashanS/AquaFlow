@@ -10,7 +10,7 @@ namespace AquaFlow.API.Utils
 
         public FileUploadHelper()
         {
-            uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "fishfarms");
+            uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
 
             if (!Directory.Exists(uploadsFolder))
             {
@@ -31,7 +31,7 @@ namespace AquaFlow.API.Utils
                 await image.SaveAsync(filePath, new JpegEncoder());
             }
 
-            return $"/uploads/fishfarms/{fileName}";
+            return $"/uploads/{fileName}";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AquaFlow.Domain.DTOs.FishFarm;
+﻿using AquaFlow.DataAccess.Filters;
+using AquaFlow.Domain.DTOs.FishFarm;
 using AquaFlow.Domain.DTOs.Worker;
 using AquaFlow.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,51 @@ namespace AquaFlow.API.Controllers
             {
                 logger.LogError(ex, "Error creating user");
                 return StatusCode(500, new { Message = "An error occurred while creating the Worker." });
+            }
+        }
+
+        [HttpGet("getWorkersByFilter")]
+        public async Task<ActionResult<RetrieveWorkerWithTotalDTO>> GetWorkersByFilterAsync([FromQuery] WorkerFilterOptions filterOptions)
+        {
+            try
+            {
+                var workers = await workerService.GetWorkersByFilterAsync(filterOptions);
+                return Ok(workers);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occure while getting workers");
+                return StatusCode(500, new { Message = "An error occure while getting workers" });
+            }
+        }
+
+        [HttpDelete("deleteUserById/{id}")]
+        public async Task<ActionResult> DeleteWorkerByIdAsync(int id)
+        {
+            try
+            {
+                await workerService.DeleteWorkerByIdAsync(id);
+                return NoContent();
+            }
+            catch(Exception ex) 
+            {
+                logger.LogError(ex, "Error occured while deleting worker");
+                return StatusCode(500, new { Message = "Error" });
+            }
+        }
+
+        [HttpGet("getUserById/{id}")]
+        public async Task<ActionResult<RetrieveWorkerDTO>> GetWorkerByIdAsync(int id)
+        {
+            try
+            {
+                var worker = await workerService.GetWorkerByIdAsync(id);
+                return Ok(worker);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "error");
+                return StatusCode(500, new { Message="User Not Found"});
             }
         }
     }

@@ -19,6 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddApplicationServices();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddSingleton<FileUploadHelper>();
+builder.Services.AddSingleton<FishFarmFilterHelper>();
 builder.Services.AddSingleton<WorkerFilterHelper>();
 
 

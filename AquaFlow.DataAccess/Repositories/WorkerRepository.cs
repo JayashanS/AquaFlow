@@ -132,6 +132,21 @@ namespace AquaFlow.DataAccess.Repositories
             }
         }
 
-       
+        public async Task<IEnumerable<Worker>> GetWorkersByFishFarmIdAsync(int id)
+        {
+            try
+            {
+                var workers = await context.Workers.Where(w => w.FishFarmId == id).ToListAsync();
+                if (!workers.Any())
+                {
+                    throw new KeyNotFoundException($"No Workers found for reference fissh farm id:{id}");
+                }
+                return workers;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occured while finding workers", ex);
+            }
+        }
     }
 }

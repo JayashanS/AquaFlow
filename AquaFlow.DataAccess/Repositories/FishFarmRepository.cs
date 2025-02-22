@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AquaFlow.DataAccess.Repositories
 {
-    public class FishFarmRepository(AppDbContext context, ILogger<FishFarmRepository> logger) : IFishFarmRepository
+    public class FishFarmRepository(AppDbContext context, FishFarmFilterHelper fishFarmFilterHelper, ILogger<FishFarmRepository> logger) : IFishFarmRepository
     {
         public async Task<FishFarm> CreateFishFarmAsync(FishFarm fishFarm)
         {
@@ -72,11 +72,11 @@ namespace AquaFlow.DataAccess.Repositories
                 }
                 var query = context.FishFarms.AsQueryable();
 
-                query = FishFarmFilterHelper.ApplyNameFilter(query, filterOptions.Name);
-                query = FishFarmFilterHelper.ApplyLocationFilter(query, filterOptions.TopRightLat, filterOptions.TopRightLng, filterOptions.BottomLeftLat, filterOptions.BottomLeftLng);
-                query = FishFarmFilterHelper.ApplyNumberOfCagesFilter(query, filterOptions.NumberOfCages);
-                query = FishFarmFilterHelper.ApplyHasBargeFilter(query, filterOptions.HasBarge);
-                query = FishFarmFilterHelper.ApplyPaging(query, filterOptions.PageNumber, filterOptions.PageSize);
+                query = fishFarmFilterHelper.ApplyNameFilter(query, filterOptions.Name);
+                query = fishFarmFilterHelper.ApplyLocationFilter(query, filterOptions.TopRightLat, filterOptions.TopRightLng, filterOptions.BottomLeftLat, filterOptions.BottomLeftLng);
+                query = fishFarmFilterHelper.ApplyNumberOfCagesFilter(query, filterOptions.NumberOfCages);
+                query = fishFarmFilterHelper.ApplyHasBargeFilter(query, filterOptions.HasBarge);
+                query = fishFarmFilterHelper.ApplyPaging(query, filterOptions.PageNumber, filterOptions.PageSize);
 
                 return await query.ToListAsync();
             }
@@ -91,10 +91,10 @@ namespace AquaFlow.DataAccess.Repositories
         {
             var query = context.FishFarms.AsQueryable();
 
-            query = FishFarmFilterHelper.ApplyNameFilter(query, filterOptions.Name);
-            query = FishFarmFilterHelper.ApplyLocationFilter(query, filterOptions.TopRightLat, filterOptions.TopRightLng, filterOptions.BottomLeftLat, filterOptions.BottomLeftLng);
-            query = FishFarmFilterHelper.ApplyNumberOfCagesFilter(query, filterOptions.NumberOfCages);
-            query = FishFarmFilterHelper.ApplyHasBargeFilter(query, filterOptions.HasBarge);
+            query = fishFarmFilterHelper.ApplyNameFilter(query, filterOptions.Name);
+            query = fishFarmFilterHelper.ApplyLocationFilter(query, filterOptions.TopRightLat, filterOptions.TopRightLng, filterOptions.BottomLeftLat, filterOptions.BottomLeftLng);
+            query = fishFarmFilterHelper.ApplyNumberOfCagesFilter(query, filterOptions.NumberOfCages);
+            query = fishFarmFilterHelper.ApplyHasBargeFilter(query, filterOptions.HasBarge);
 
             return await query.CountAsync();
         }
