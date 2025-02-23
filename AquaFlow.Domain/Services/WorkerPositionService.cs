@@ -16,7 +16,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in service layer while fetching worker positions.", ex);
+                throw new Exception("SVC: Error while fetching worker positions.", ex);
             }
         }
     }

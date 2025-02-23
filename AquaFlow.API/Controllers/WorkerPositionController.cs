@@ -20,8 +20,8 @@ namespace AquaFlow.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error in GetWorkerPositions");
-                return StatusCode(500, "Internal server error while fetching worker positions.");
+                logger.LogError(ex, "API: Error in GetWorkerPositions");
+                return StatusCode(500, new { Message = "Internal server error while fetching worker positions." });
             }
         }
     }

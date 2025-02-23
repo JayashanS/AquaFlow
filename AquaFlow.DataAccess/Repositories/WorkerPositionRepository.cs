@@ -15,7 +15,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error fetching worker positions from the database.", ex);
+                throw new Exception("DAL: Error fetching worker positions from the database.", ex);
             }
         }
     }

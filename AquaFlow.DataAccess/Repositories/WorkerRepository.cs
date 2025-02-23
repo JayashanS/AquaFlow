@@ -19,7 +19,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex) 
             {           
-                throw new Exception("An error occurred while saving the worker data.",ex);
+                throw new Exception("DAL: An error occurred while saving the worker data.",ex);
             }
         }
 
@@ -30,7 +30,7 @@ namespace AquaFlow.DataAccess.Repositories
                 var workerToBeDeleted = await context.Workers.FirstOrDefaultAsync(w => w.Id == id);
                 if (workerToBeDeleted == null)
                 {
-                    throw new KeyNotFoundException($"Worker with Id:{id} is not found");
+                    throw new KeyNotFoundException($"DAL: Worker with Id:{id} is not found");
                 }
    
                 context.Remove(workerToBeDeleted);
@@ -38,7 +38,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error occured while deleting worker",ex);
+                throw new Exception("DAL: Error occured while deleting worker", ex);
             }
         }
 
@@ -49,13 +49,13 @@ namespace AquaFlow.DataAccess.Repositories
                 var worker = await context.Workers.FirstOrDefaultAsync(w => w.Id == id);
                 if (worker == null)
                 {
-                    throw new KeyNotFoundException($"Could not found a worker with Id:{id}");
+                    throw new KeyNotFoundException($"DAL: Could not found a worker with Id:{id}");
                 }
                 return worker;
             }
             catch (Exception ex) 
             {
-                throw new Exception("Error occure while retrieving worker", ex); 
+                throw new Exception("DAL: Error occure while retrieving worker", ex); 
             }
         }
 
@@ -65,7 +65,7 @@ namespace AquaFlow.DataAccess.Repositories
             {
                 if (filterOptions == null)
                 {
-                    throw new ArgumentNullException(nameof(filterOptions), "Filter options cannot be null.");
+                    throw new ArgumentNullException("DAL: Filter options cannot be null.");
                 }
                 var query = context.Workers.AsQueryable();
 
@@ -96,7 +96,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while retrieving the workers with filter options", ex);
+                throw new Exception("DAL: An error occurred while retrieving the workers with filter options", ex);
             }
         }
         public async Task<int> GetTotalWorkerCountAsync(WorkerFilterOptions filterOptions)
@@ -105,7 +105,7 @@ namespace AquaFlow.DataAccess.Repositories
             {
                 if (filterOptions == null)
                 {
-                    throw new ArgumentNullException(nameof(filterOptions), "Filter options cannot be null.");
+                    throw new ArgumentNullException("DAL: Filter options cannot be null.");
                 }
                 var query = context.Workers.AsQueryable();
 
@@ -118,7 +118,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while counting workers with filter options", ex);
+                throw new Exception("DAL: An error occurred while counting workers with filter options", ex);
             }
 
         }
@@ -130,7 +130,7 @@ namespace AquaFlow.DataAccess.Repositories
                 var worker = await context.Workers.FirstOrDefaultAsync(w => w.Id == id);
                 if(worker == null)
                 {
-                    throw new KeyNotFoundException($"Worker with Id:{id} not found");
+                    throw new KeyNotFoundException($"DAL: Worker with Id:{id} not found");
                 }
 
                 worker.Name = updatedWorker.Name;
@@ -145,7 +145,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error occure updating the worker", ex);
+                throw new Exception("DAL: Error occure updating the worker", ex);
             }
         }
 
@@ -156,13 +156,13 @@ namespace AquaFlow.DataAccess.Repositories
                 var workers = await context.Workers.Where(w => w.FishFarmId == id).ToListAsync();
                 if (!workers.Any())
                 {
-                    throw new KeyNotFoundException($"No Workers found for reference fissh farm id:{id}");
+                    throw new KeyNotFoundException($"DAL: No Workers found for reference fissh farm id:{id}");
                 }
                 return workers;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error occured while finding workers", ex);
+                throw new Exception("DAL: Error occured while finding workers", ex);
             }
         }
     }

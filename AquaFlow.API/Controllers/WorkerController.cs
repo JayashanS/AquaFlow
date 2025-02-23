@@ -1,5 +1,4 @@
 ﻿using AquaFlow.DataAccess.Filters;
-using AquaFlow.Domain.DTOs.FishFarm;
 using AquaFlow.Domain.DTOs.Worker;
 using AquaFlow.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +19,7 @@ namespace AquaFlow.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error creating user");
+                logger.LogError(ex, "API: Error creating user");
                 return StatusCode(500, new { Message = "An error occurred while creating the Worker." });
             }
         }
@@ -35,7 +34,7 @@ namespace AquaFlow.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "An error occure while getting workers");
+                logger.LogError(ex, "API: An error occure while getting workers");
                 return StatusCode(500, new { Message = "An error occure while getting workers" });
             }
         }
@@ -50,8 +49,8 @@ namespace AquaFlow.API.Controllers
             }
             catch(Exception ex) 
             {
-                logger.LogError(ex, "Error occured while deleting worker");
-                return StatusCode(500, new { Message = "Error" });
+                logger.LogError(ex, "API: Error occured while deleting worker");
+                return StatusCode(500, new { Message = "Error occured while deleting worker" });
             }
         }
 
@@ -65,7 +64,7 @@ namespace AquaFlow.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "error");
+                logger.LogError(ex, "API: error retrieving user");
                 return StatusCode(500, new { Message="User Not Found"});
             }
         }

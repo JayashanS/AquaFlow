@@ -27,7 +27,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex) 
             {
-                throw new Exception("Internal server error",ex);
+                throw new Exception("SVC: Internal server error",ex);
             }
               
         }
@@ -40,7 +40,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Internal server error", ex);
+                throw new Exception("SVC: Internal server error", ex);
             }
         }
 
@@ -53,7 +53,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Internal server error", ex);
+                throw new Exception("SVC: Internal server error", ex);
             }
         }
 
@@ -73,7 +73,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Internal server error", ex);
+                throw new Exception("SVC: Internal server error", ex);
             }
         }
 

@@ -4,11 +4,10 @@ using AquaFlow.DataAccess.Interfaces;
 using AquaFlow.Domain.DTOs.FishFarm;
 using AquaFlow.Domain.Interfaces;
 using AutoMapper;
-using Microsoft.Extensions.Logging;
 
 namespace AquaFlow.Domain.Services
 {
-    public class FishFarmService(IFishFarmRepository fishFarmRepository, IMapper mapper, ILogger<FishFarmService> logger, FileUploadHelper fileUploadHelper, IWorkerRepository workerRepository) : IFishFarmService
+    public class FishFarmService(IFishFarmRepository fishFarmRepository, IMapper mapper, FileUploadHelper fileUploadHelper, IWorkerRepository workerRepository) : IFishFarmService
     {
         public async Task<RetrieveFishFarmDTO> CreateFishFarmAsync(CreateFishFarmDTO fishFarmDTO)
         {
@@ -28,8 +27,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error creating fish farm.");
-                throw;
+                throw new Exception("SVC: Error creating fish farm",ex);
             }
         }
 
@@ -41,7 +39,7 @@ namespace AquaFlow.Domain.Services
 
                 if (fishFarm == null)
                 {
-                    throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
+                    throw new KeyNotFoundException($"SVC: Fish farm with ID {id} not found.");
                 }
 
                 if (!string.IsNullOrEmpty(fishFarm.PictureUrl))
@@ -72,8 +70,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error deleting fish farm with id {id}", id);
-                throw;
+                throw new Exception("SVC: Error deleting fish farm", ex);
             }
         }
 
@@ -86,8 +83,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error retrieving fish farm with ID {FishFarmId}.", id);
-                throw;
+                throw new Exception("SVC: Error retrieving fish farm", ex);
             }
         }
 
@@ -106,8 +102,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error retrieving fish farms with count.");
-                throw;
+                throw new Exception("SVC: Error retrieving fish farms with count.",ex);
             }
         }
 
@@ -118,7 +113,7 @@ namespace AquaFlow.Domain.Services
                 var existingFishFarm = await fishFarmRepository.GetFishFarmByIdAsync(id);
                 if (existingFishFarm == null)
                 {
-                    throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
+                    throw new KeyNotFoundException($"SVC: Fish farm with ID {id} not found.");
                 }
 
                 mapper.Map(updatedFishFarmDto, existingFishFarm);
@@ -127,8 +122,7 @@ namespace AquaFlow.Domain.Services
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error updating fish farm with ID {FishFarmId}.", id);
-                throw;
+                throw new Exception("SVC: Error updating fish farm", ex);
             }
         }
     }

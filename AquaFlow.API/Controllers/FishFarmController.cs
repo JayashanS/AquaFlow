@@ -19,7 +19,7 @@ namespace AquaFlow.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error creating fish farm.");
+                logger.LogError(ex, "API: Error creating fish farm.");
                 return StatusCode(500, new { Message = "An error occurred while creating the fish farm." });
             }
         }
@@ -34,7 +34,7 @@ namespace AquaFlow.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error retrieving fish farm with ID {FishFarmId}.", id);
+                logger.LogError(ex, "API: Error retrieving fish farm with ID {FishFarmId}.", id);
                 return NotFound(new { Message = $"Fish farm with ID {id} not found." });
             }
         }
@@ -49,7 +49,7 @@ namespace AquaFlow.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error retrieving fish farms with count.");
+                logger.LogError(ex, "API: Error retrieving fish farms with count.");
                 return StatusCode(500, new { Message = "An error occurred while retrieving the fish farms." });
             }
         }       
@@ -64,7 +64,7 @@ namespace AquaFlow.API.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error updating fish farm with ID {FishFarmId}.", id);
+                logger.LogError(ex, "API: Error updating fish farm with ID {FishFarmId}.", id);
                 return StatusCode(500, new { Message = "An error occurred while updating the fish farm." });
             }
         }
@@ -79,7 +79,7 @@ namespace AquaFlow.API.Controllers
             } 
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error deleting fish farm with ID {FishFarmId}.", id);
+                logger.LogError(ex, "API: Error deleting fish farm with ID {FishFarmId}.", id);
                 return StatusCode(500, new { Message = "An error occurred while deleting the fish farm." });
             }
         }

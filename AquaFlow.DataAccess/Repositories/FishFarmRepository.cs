@@ -20,8 +20,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error while processing the creation of fish farm: {FishFarmName}", fishFarm.Name);
-                throw;
+                throw new Exception("DAL: Error while processing the creation of fish farm", ex);
             }
         }
 
@@ -32,15 +31,14 @@ namespace AquaFlow.DataAccess.Repositories
                 var fishFarm = await context.FishFarms.FirstOrDefaultAsync(f => f.Id == id);
                 if (fishFarm == null)
                 {
-                    throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
+                    throw new KeyNotFoundException($"DAL: Fish farm with ID {id} not found.");
                 }
                 context.FishFarms.Remove(fishFarm);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "An error occurred while deleting the fish farm with ID {FishFarmId}.", id);
-                throw;  
+                throw new Exception("DAL: An error occurred while deleting the fish farm", ex);
             }
         }
 
@@ -51,14 +49,13 @@ namespace AquaFlow.DataAccess.Repositories
                 var fishFarm = await context.FishFarms.FirstOrDefaultAsync(f => f.Id == id);
                 if (fishFarm == null)
                 {
-                    throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
+                    throw new KeyNotFoundException($"DAL: Fish farm with ID {id} not found.");
                 }
                 return fishFarm;
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "An error occurred while retrieving the fish farm with ID {FishFarmId}.", id);
-                throw;
+                throw new Exception("DAL: An error occurred while retrieving the fish farm", ex);
             }
         }
 
@@ -68,7 +65,7 @@ namespace AquaFlow.DataAccess.Repositories
             {
                 if (filterOptions == null)
                 {
-                    throw new ArgumentNullException(nameof(filterOptions), "Filter options cannot be null.");
+                    throw new ArgumentNullException("DAL: Filter options cannot be null.");
                 }
                 var query = context.FishFarms.AsQueryable();
 
@@ -82,8 +79,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "An error occurred while retrieving the fish farms with filter options: {FilterOptions}", filterOptions);
-                throw;
+                throw new Exception ("DAL: An error occurred while retrieving the fish farms with filter options",ex);
             }
         }
 
@@ -106,7 +102,7 @@ namespace AquaFlow.DataAccess.Repositories
                 var fishFarm = await context.FishFarms.FirstOrDefaultAsync(f => f.Id == id);
                 if (fishFarm == null)
                 {
-                    throw new KeyNotFoundException($"Fish farm with ID {id} not found.");
+                    throw new KeyNotFoundException($"DAL: Fish farm with ID {id} not found.");
                 }
 
                 fishFarm.Name = updatedFishFarm.Name;
@@ -119,8 +115,7 @@ namespace AquaFlow.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "An error occurred while updating the fish farm with ID {FishFarmId}.", id);
-                throw;
+                throw new Exception("DAL: An error occurred while updating the fish farm",ex);
             }
         }
     }
