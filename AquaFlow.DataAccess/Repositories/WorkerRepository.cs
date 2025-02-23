@@ -75,7 +75,24 @@ namespace AquaFlow.DataAccess.Repositories
                 query = workerFilterHelper.ApplyCertifiedUntilDateFilter(query, filterOptions.CertifiedUntil);
                 query = workerFilterHelper.ApplyPaging(query, filterOptions.PageNumber, filterOptions.PageSize);
 
-                return await query.ToListAsync();
+                var result = await query
+                    .Include(w => w.FishFarm)
+                    .Include(w => w.Position)
+                    .Select(w => new Worker
+                    {
+                        Id = w.Id,
+                        Name = w.Name,
+                        PictureUrl = w.PictureUrl,
+                        Email = w.Email,
+                        Age = w.Age,
+                        PositionId = w.PositionId,
+                        CertifiedUntil = w.CertifiedUntil,
+                        FishFarmId = w.FishFarmId,
+                        FishFarmName = w.FishFarm.Name,
+                        PositionName = w.Position.Name,
+                    })
+                    .ToListAsync();
+                return result;
             }
             catch (Exception ex)
             {

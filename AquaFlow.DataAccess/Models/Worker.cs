@@ -1,4 +1,6 @@
-﻿namespace AquaFlow.DataAccess.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AquaFlow.DataAccess.Models
 {
     public class Worker
     {
@@ -10,6 +12,12 @@
         public int PositionId { get; set; } 
         public DateTime CertifiedUntil { get; set; }
         public int FishFarmId { get; set; }
+
+        [NotMapped] 
+        public string FishFarmName { get; set; }
+
+        [NotMapped]
+        public string PositionName { get; set; }
 
         public virtual WorkerPosition Position { get; set; }
         public virtual FishFarm FishFarm { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace AquaFlow.Domain.DTOs.Worker
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AquaFlow.Domain.DTOs.Worker
 {
     public class RetrieveWorkerDTO
     {
@@ -10,5 +12,7 @@
         public int PositionId { get; set; }
         public DateTime CertifiedUntil { get; set; }
         public int FishFarmId { get; set; }
+        public string FishFarmName { get; set; }
+        public string PositionName { get; set; }
     }
 }
