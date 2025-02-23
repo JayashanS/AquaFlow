@@ -77,9 +77,38 @@ namespace AquaFlow.Domain.Services
             }
         }
 
-        public Task UpdateWorkerById(int id, UpdateWorkerDTO updatedWorkerDTO)
+        public async Task UpdateWorkerByIdAsync(int id, UpdateWorkerDTO updatedWorkerDTO)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var existingWorker = await workerRepository.GetWorkerByIdAsync(id);
+                if (existingWorker == null)
+                {
+                    throw new KeyNotFoundException($"SVC: Worker with ID {id} not found.");
+                }
+
+                if (updatedWorkerDTO.Picture != null)
+                {
+                    if (!string.IsNullOrEmpty(existingWorker.PictureUrl))
+                    {
+                        var oldPicturePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", existingWorker.PictureUrl.TrimStart('/'));
+
+                        if (File.Exists(oldPicturePath))
+                        {
+                            File.Delete(oldPicturePath);
+                        }
+                    }
+                    existingWorker.PictureUrl = await fileUploadHelper.SaveFileAsync(updatedWorkerDTO.Picture);
+                }
+
+                mapper.Map(updatedWorkerDTO, existingWorker);
+
+                await workerRepository.UpdateWorkerByIdAsync(id, existingWorker);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("SVC: Error updating worker", ex);
+            }
         }
     }
 }

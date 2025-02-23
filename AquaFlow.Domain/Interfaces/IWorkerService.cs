@@ -9,6 +9,6 @@ namespace AquaFlow.Domain.Interfaces
         Task DeleteWorkerByIdAsync(int id);
         Task<RetrieveWorkerWithTotalDTO> GetWorkersByFilterAsync(WorkerFilterOptions filterOptions);
         Task<RetrieveWorkerDTO> GetWorkerByIdAsync(int id);
-        Task UpdateWorkerById(int id, UpdateWorkerDTO updatedWorkerDTO);
+        Task UpdateWorkerByIdAsync(int id, UpdateWorkerDTO updatedWorkerDTO);
     }
 }

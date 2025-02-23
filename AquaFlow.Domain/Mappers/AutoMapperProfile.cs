@@ -17,7 +17,9 @@ namespace AquaFlow.Domain.Mappers
                 .ForMember(dest => dest.PictureUrl, opt => opt.Ignore());
             CreateMap<UpdateFishFarmDTO, AquaFlow.DataAccess.Models.FishFarm>()
                 .ForMember(dest => dest.Location, opt => opt.MapFrom(src =>
-                    new Point(Math.Round(src.Longitude, 4), Math.Round(src.Latitude, 4)) { SRID = 4326 }));
+                    new Point(Math.Round(src.Longitude, 4), Math.Round(src.Latitude, 4)) { SRID = 4326 }))
+                .ForMember(dest => dest.PictureUrl, opt => opt.Ignore())
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<AquaFlow.DataAccess.Models.FishFarm, RetrieveFishFarmDTO>()
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Location.X))
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Location.Y));
@@ -25,6 +27,10 @@ namespace AquaFlow.Domain.Mappers
             CreateMap<CreateWorkerDTO, Worker>()
                 .ForMember(dest => dest.PictureUrl, opt => opt.Ignore());
             CreateMap<Worker, RetrieveWorkerDTO>();
+            CreateMap<UpdateWorkerDTO, Worker>()
+                .ForMember(dest => dest.PictureUrl, opt => opt.Ignore())
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
 
             CreateMap<WorkerPosition, CreateWorkerPositionDTO>();
             CreateMap<WorkerPosition, RetrieveWorkerPositionDTO>();

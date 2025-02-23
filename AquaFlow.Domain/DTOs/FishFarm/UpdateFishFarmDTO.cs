@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace AquaFlow.Domain.DTOs.FishFarm
 {
     public class UpdateFishFarmDTO
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public required string Name { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public int NumberOfCages { get; set; }
         public bool HasBarge { get; set; }
-        public string PictureUrl { get; set; }
+        public required IFormFile Picture { get; set; }
     }
 }

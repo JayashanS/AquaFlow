@@ -123,7 +123,7 @@ namespace AquaFlow.DataAccess.Repositories
 
         }
 
-        public async Task UpdateWorkerById(int id, Worker updatedWorker)
+        public async Task UpdateWorkerByIdAsync(int id, Worker updatedWorker)
         {
             try
             {

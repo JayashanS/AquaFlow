@@ -25,7 +25,7 @@ namespace AquaFlow.API.Controllers
         }
 
         [HttpGet("getById/{id}")]
-        public async Task<IActionResult> GetFishFarmByIdAsync(int id)
+        public async Task<ActionResult> GetFishFarmByIdAsync(int id)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace AquaFlow.API.Controllers
         }
 
         [HttpGet("getByFilter")]
-        public async Task<IActionResult> GetFishFarmsWithCountAsync([FromQuery] FishFarmFilterOptions filterOptions)
+        public async Task<ActionResult<RetrieveFishFarmWithTotalDTO>> GetFishFarmsWithCountAsync([FromQuery] FishFarmFilterOptions filterOptions)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace AquaFlow.API.Controllers
         }       
 
         [HttpPut("updateById/{id}")]
-        public async Task<IActionResult> UpdateFishFarmByIdAsync(int id, [FromBody] UpdateFishFarmDTO updatedFishFarmDto)
+        public async Task<ActionResult> UpdateFishFarmByIdAsync(int id, [FromForm] UpdateFishFarmDTO updatedFishFarmDto)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace AquaFlow.API.Controllers
         }
 
         [HttpDelete("deleteById/{id}")]
-        public async Task<IActionResult> DeleteFishFarmByIdAsync(int id)
+        public async Task<ActionResult> DeleteFishFarmByIdAsync(int id)
         {
             try
             {

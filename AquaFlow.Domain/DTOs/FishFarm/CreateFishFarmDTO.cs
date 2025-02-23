@@ -4,11 +4,11 @@ namespace AquaFlow.Domain.DTOs.FishFarm
 {
     public class CreateFishFarmDTO
     {
-        public string Name { get; set; }    
+        public required string Name { get; set; }    
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public int NumberOfCages { get; set; } 
         public bool HasBarge { get; set; }
-        public IFormFile Picture { get; set; }
+        public required IFormFile Picture { get; set; }
     }
 }

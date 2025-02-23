@@ -10,7 +10,7 @@ namespace AquaFlow.DataAccess.Interfaces
         Task<IEnumerable<Worker>> GetWorkersByFilterAsync(WorkerFilterOptions filterOptions);
         Task<Worker> GetWorkerByIdAsync(int id);
         Task<int> GetTotalWorkerCountAsync(WorkerFilterOptions filetrOptions);
-        Task UpdateWorkerById(int id, Worker updatedWorker);
+        Task UpdateWorkerByIdAsync(int id, Worker updatedWorker);
         Task<IEnumerable<Worker>> GetWorkersByFishFarmIdAsync(int id);
     }
 }

@@ -47,7 +47,7 @@ namespace AquaFlow.API.Controllers
                 await workerService.DeleteWorkerByIdAsync(id);
                 return NoContent();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 logger.LogError(ex, "API: Error occured while deleting worker");
                 return StatusCode(500, new { Message = "Error occured while deleting worker" });
@@ -65,7 +65,22 @@ namespace AquaFlow.API.Controllers
             catch (Exception ex)
             {
                 logger.LogError(ex, "API: error retrieving user");
-                return StatusCode(500, new { Message="User Not Found"});
+                return StatusCode(500, new { Message = "User Not Found" });
+            }
+        }
+
+        [HttpPut("updateWorkerById/{id}")]
+        public async Task<ActionResult> UpdateWorkerByIdAsync(int id, [FromForm] UpdateWorkerDTO updatedWorkerDTO)
+        {
+            try
+            {
+                await workerService.UpdateWorkerByIdAsync(id, updatedWorkerDTO);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "API: Error updating worker");
+                return StatusCode(500, new { Message = "An error occurred while updating the worker." });
             }
         }
     }

@@ -115,7 +115,19 @@ namespace AquaFlow.Domain.Services
                 {
                     throw new KeyNotFoundException($"SVC: Fish farm with ID {id} not found.");
                 }
+                if (updatedFishFarmDto.Picture != null)
+                {
+                    if (!string.IsNullOrEmpty(existingFishFarm.PictureUrl))
+                    {
+                        var oldPicturePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", existingFishFarm.PictureUrl.TrimStart('/'));
 
+                        if (File.Exists(oldPicturePath))
+                        {
+                            File.Delete(oldPicturePath);
+                        }
+                    }
+                    existingFishFarm.PictureUrl = await fileUploadHelper.SaveFileAsync(updatedFishFarmDto.Picture);
+                }
                 mapper.Map(updatedFishFarmDto, existingFishFarm);
 
                 await fishFarmRepository.UpdateFishFarmByIdAsync(id, existingFishFarm);
