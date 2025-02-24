@@ -154,10 +154,6 @@ namespace AquaFlow.DataAccess.Repositories
             try
             {
                 var workers = await context.Workers.Where(w => w.FishFarmId == id).ToListAsync();
-                if (!workers.Any())
-                {
-                    throw new KeyNotFoundException($"DAL: No Workers found for reference fissh farm id:{id}");
-                }
                 return workers;
             }
             catch (Exception ex)

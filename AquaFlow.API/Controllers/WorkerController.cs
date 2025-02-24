@@ -24,7 +24,7 @@ namespace AquaFlow.API.Controllers
             }
         }
 
-        [HttpGet("getWorkersByFilter")]
+        [HttpGet("getByFilter")]
         public async Task<ActionResult<RetrieveWorkerWithTotalDTO>> GetWorkersByFilterAsync([FromQuery] WorkerFilterOptions filterOptions)
         {
             try
@@ -39,7 +39,7 @@ namespace AquaFlow.API.Controllers
             }
         }
 
-        [HttpDelete("deleteUserById/{id}")]
+        [HttpDelete("deleteById/{id}")]
         public async Task<ActionResult> DeleteWorkerByIdAsync(int id)
         {
             try
@@ -54,7 +54,7 @@ namespace AquaFlow.API.Controllers
             }
         }
 
-        [HttpGet("getUserById/{id}")]
+        [HttpGet("getById/{id}")]
         public async Task<ActionResult<RetrieveWorkerDTO>> GetWorkerByIdAsync(int id)
         {
             try
@@ -69,7 +69,7 @@ namespace AquaFlow.API.Controllers
             }
         }
 
-        [HttpPut("updateWorkerById/{id}")]
+        [HttpPut("updateById/{id}")]
         public async Task<ActionResult> UpdateWorkerByIdAsync(int id, [FromForm] UpdateWorkerDTO updatedWorkerDTO)
         {
             try

@@ -53,18 +53,22 @@ namespace AquaFlow.Domain.Services
                 }
 
                 var usersInFishFarm = await workerRepository.GetWorkersByFishFarmIdAsync(id);
-                foreach (var user in usersInFishFarm)
+                if (usersInFishFarm.Any()) 
                 {
-                    if (!string.IsNullOrEmpty(user.PictureUrl))
+                    foreach (var user in usersInFishFarm)
                     {
-                        var userPicturePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", user.PictureUrl.TrimStart('/'));
-
-                        if (File.Exists(userPicturePath))
+                        if (!string.IsNullOrEmpty(user.PictureUrl))
                         {
-                            File.Delete(userPicturePath); 
+                            var userPicturePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", user.PictureUrl.TrimStart('/'));
+
+                            if (File.Exists(userPicturePath))
+                            {
+                                File.Delete(userPicturePath);
+                            }
                         }
                     }
                 }
+
 
                 await fishFarmRepository.DeleteFishFarmByIdAsync(id);
             }
