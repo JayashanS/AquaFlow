@@ -161,5 +161,22 @@ namespace AquaFlow.DataAccess.Repositories
                 throw new Exception("DAL: Error occured while finding workers", ex);
             }
         }
+
+        public async Task<bool> DoesEmailExist(string email)
+        {
+            try
+            {
+                var worker = await context.Workers.FirstOrDefaultAsync(w => w.Email == email);
+                if (worker != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("DAL: Error finding worker email", ex);
+            }
+        }
     }
 }

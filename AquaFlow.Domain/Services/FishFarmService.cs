@@ -133,7 +133,7 @@ namespace AquaFlow.Domain.Services
                     existingFishFarm.PictureUrl = await fileUploadHelper.SaveFileAsync(updatedFishFarmDto.Picture);
                 }
                 mapper.Map(updatedFishFarmDto, existingFishFarm);
-
+              
                 await fishFarmRepository.UpdateFishFarmByIdAsync(id, existingFishFarm);
             }
             catch (Exception ex)

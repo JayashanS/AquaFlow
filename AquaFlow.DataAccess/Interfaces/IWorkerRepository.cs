@@ -12,5 +12,6 @@ namespace AquaFlow.DataAccess.Interfaces
         Task<int> GetTotalWorkerCountAsync(WorkerFilterOptions filetrOptions);
         Task UpdateWorkerByIdAsync(int id, Worker updatedWorker);
         Task<IEnumerable<Worker>> GetWorkersByFishFarmIdAsync(int id);
+        Task<bool> DoesEmailExist(string email);
     }
 }

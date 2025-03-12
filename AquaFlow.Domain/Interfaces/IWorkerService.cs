@@ -10,5 +10,6 @@ namespace AquaFlow.Domain.Interfaces
         Task<RetrieveWorkerWithTotalDTO> GetWorkersByFilterAsync(WorkerFilterOptions filterOptions);
         Task<RetrieveWorkerDTO> GetWorkerByIdAsync(int id);
         Task UpdateWorkerByIdAsync(int id, UpdateWorkerDTO updatedWorkerDTO);
+        Task<bool> DoesEmailExist(string email);  
     }
 }

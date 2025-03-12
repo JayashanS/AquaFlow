@@ -83,5 +83,20 @@ namespace AquaFlow.API.Controllers
                 return StatusCode(500, new { Message = "An error occurred while updating the worker." });
             }
         }
+
+        [HttpPost("checkEmail/{email}")]
+        public async Task<ActionResult<bool>> DoesEmailExist(string email)
+        {
+            try
+            {
+                bool emailExists = await workerService.DoesEmailExist(email);
+                return Ok(emailExists);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "API: Error finding found");
+                return StatusCode(500, new { Message = "Error finding email" });
+            }   
+        }
     }
 }

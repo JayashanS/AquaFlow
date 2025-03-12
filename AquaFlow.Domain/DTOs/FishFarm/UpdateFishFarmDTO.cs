@@ -10,6 +10,6 @@ namespace AquaFlow.Domain.DTOs.FishFarm
         public double Longitude { get; set; }
         public int NumberOfCages { get; set; }
         public bool HasBarge { get; set; }
-        public required IFormFile Picture { get; set; }
+        public  IFormFile? Picture { get; set; }
     }
 }

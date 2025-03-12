@@ -44,6 +44,18 @@ namespace AquaFlow.Domain.Services
             }
         }
 
+        public async Task<bool> DoesEmailExist(string email)
+        {
+            try
+            {
+                return await workerRepository.DoesEmailExist(email);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("SVC: Error while checking worker email", ex);
+            }
+        }
+
         public async Task<RetrieveWorkerDTO> GetWorkerByIdAsync(int id)
         {
             try
